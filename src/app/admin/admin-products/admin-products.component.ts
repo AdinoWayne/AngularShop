@@ -2,6 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ProductService } from 'src/app/product.service';
 import { Subscription } from 'rxjs';
 import { Product } from 'src/app/models/product';
+import { DataTableResource } from 'angular5-data-table';
 
 @Component({
   selector: 'app-admin-products',
@@ -12,11 +13,29 @@ export class AdminProductsComponent implements OnInit, OnDestroy {
   products: Product[];
   filteredProducts: any[];
   subcription: Subscription;
+  tableResource: DataTableResource<Product>;
+  items: Product[];
+  itemsCount: number;
 
   constructor(private productService: ProductService) {
     this.productService.getAll().subscribe(el => {
-      this.filteredProducts = this.products = el
+      this.filteredProducts = this.products = el;
+      this.initializeTable(el);
     });
+  }
+
+  reloadItems(event) {
+    if (!this.tableResource) return ;
+    this.tableResource.query(event)
+        .then(items => this.items = items);
+  }
+
+  private initializeTable(product: Product[]) {
+    this.tableResource = new DataTableResource(product);
+    this.tableResource.query({ offset: 0 })
+        .then(items => this.items =items);
+    this.tableResource.count()
+        .then(count => this.itemsCount = count);
   }
 
   filter(query: string) {

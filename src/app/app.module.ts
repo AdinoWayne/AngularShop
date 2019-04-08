@@ -6,6 +6,7 @@ import { AngularFireAuthModule } from 'angularfire2/auth';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule } from '@angular/forms';
 import { CustomFormsModule } from 'ng2-validation';
+import { DataTableModule } from 'angular5-data-table';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -47,6 +48,7 @@ import { ProductService } from './product.service';
     BrowserModule,
     AppRoutingModule,
     CustomFormsModule,
+    DataTableModule,
     NgbModule,
     FormsModule,
     AngularFireModule.initializeApp(environment.firebase),
