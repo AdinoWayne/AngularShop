@@ -48,7 +48,7 @@ import { ProductService } from './product.service';
     BrowserModule,
     AppRoutingModule,
     CustomFormsModule,
-    DataTableModule,
+    DataTableModule.forRoot(),
     NgbModule,
     FormsModule,
     AngularFireModule.initializeApp(environment.firebase),

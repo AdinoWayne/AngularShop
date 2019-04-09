@@ -10,7 +10,7 @@ import { DataTableResource } from 'angular5-data-table';
   styleUrls: ['./admin-products.component.sass']
 })
 export class AdminProductsComponent implements OnInit, OnDestroy {
-  products: Product[];
+  products: Product[] = [];
   subcription: Subscription;
   tableResource: DataTableResource<Product>;
   items: Product[] = [];
