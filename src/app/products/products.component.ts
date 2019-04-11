@@ -3,6 +3,7 @@ import { ProductService } from '../product.service';
 import { CategoryService } from '../category.service';
 import { ActivatedRoute } from '@angular/router';
 import { Product } from '../models/product';
+import { switchMap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-products',
@@ -19,16 +20,16 @@ export class ProductsComponent implements OnInit {
   constructor(private productService: ProductService,
     private route: ActivatedRoute,
     private categoryService: CategoryService) {
-    productService.getAll().subscribe(product => {
+    this.productService.getAll().pipe(switchMap(product => {
       this.products = product;
-    })
+      return route.queryParamMap;
+    })).subscribe(el => {
+        this.category = el.get("category");
+        this.filteredProducts = (this.category) ? 
+        this.products.filter(p => p.category === this.category) : 
+        this.products
+      });
     this.categories$ = categoryService.getCategories();
-    route.queryParamMap.subscribe(params => {
-      this.category = params.get('category');
-      this.filteredProducts = (this.category) ?
-      this.products.filter(p => p.category === this.category) :
-      this.products;
-    })
   }
 
   ngOnInit() {
