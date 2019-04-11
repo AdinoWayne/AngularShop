@@ -67,6 +67,7 @@ import { ProductCardComponent } from './product-card/product-card.component';
     CategoryService,
     AuthGuardService
   ],
+  exports: [ ProductCardComponent ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
