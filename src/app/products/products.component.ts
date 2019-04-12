@@ -3,6 +3,7 @@ import { ProductService } from '../product.service';
 import { ActivatedRoute } from '@angular/router';
 import { Product } from '../models/product';
 import { switchMap } from 'rxjs/operators';
+import { fillProperties } from '@angular/core/src/util/property';
 
 @Component({
   selector: 'app-products',

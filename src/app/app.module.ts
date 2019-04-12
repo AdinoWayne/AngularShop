@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireAuthModule } from 'angularfire2/auth';
@@ -30,6 +30,7 @@ import { CategoryService } from './category.service';
 import { ProductService } from './product.service';
 import { ProductFilterComponent } from './products/product-filter/product-filter.component';
 import { ProductCardComponent } from './product-card/product-card.component';
+import { ShoppingCartService } from './shopping-cart.service';
 
 @NgModule({
   declarations: [
@@ -65,8 +66,10 @@ import { ProductCardComponent } from './product-card/product-card.component';
     ProductService,
     AdminAuthGuardService,
     CategoryService,
+    ShoppingCartService,
     AuthGuardService
   ],
+  schemas: [ NO_ERRORS_SCHEMA ],
   exports: [ ProductCardComponent ],
   bootstrap: [AppComponent]
 })

@@ -2,7 +2,7 @@ import { CategoryService } from '../../category.service';
 import { Component, OnInit } from '@angular/core';
 import { ProductService } from 'src/app/product.service';
 import { Router, ActivatedRoute } from '@angular/router';
-import { take } from 'rxjs/operators'
+import { take } from 'rxjs/operators';
 @Component({
   selector: 'app-product-form',
   templateUrl: './product-form.component.html',
