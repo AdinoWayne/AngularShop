@@ -11,6 +11,7 @@ export class ProductCardComponent implements OnInit {
 
   @Input('product') p: Product;
   @Input('show-actions') showActions: boolean = true;
+  @Input('shopping-cart') shoppingCart;
   
   constructor(private cardService: ShoppingCartService) {
 
@@ -21,5 +22,12 @@ export class ProductCardComponent implements OnInit {
 
   addToCard(product: Product) {
     this.cardService.addcart(product);
+  }
+
+  getQuantity() { 
+    if (!this.shoppingCart) return 0;
+    let item = this.shoppingCart.items[this.p.$key];
+    
+    return item ? item.quantity : 0; 
   }
 }

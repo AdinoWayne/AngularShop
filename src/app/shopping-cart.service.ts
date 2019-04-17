@@ -15,11 +15,17 @@ export class ShoppingCartService {
       dateCreated: new Date().getTime()
     })
   }
-  private getcart(cartId: string) {
+
+  private getItem(cartId: string, productId: string) {
+    return this.db.object('/shopping-carts/' + cartId + '/items/' + productId);
+  }
+
+  async getCart() {
+    let cartId = await this.getOrCreateCart();
     return this.db.object('/shopping-carts/' +cartId)
   }
 
-  private async getOrCreateCart() {
+  private async getOrCreateCart(): Promise<string> {
     let cartId = localStorage.getItem('cartId');
     if (cartId) return cartId;
     let result = await this.create();
@@ -28,11 +34,9 @@ export class ShoppingCartService {
   }
   async addcart(product: Product) { 
     let cartId = await this.getOrCreateCart();
-    console.log(product);
-    let item$ = this.db.object('/shopping-carts/' + cartId + '/items/' + product.$key);
+    let item$ = this.getItem(cartId, product.$key);
     item$.pipe(take(1)).subscribe(item => {
-      if (item.$exists()) item$.update({ quantity: item.quantity + 1});
-      else item$.set({ product: product, quantity: 1});
+      item$.update({ product: product, quantity: (item.quantity || 0) + 1});
     })
   }
 }
