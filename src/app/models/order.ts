@@ -6,9 +6,11 @@ export class Order {
     items: any[];
 
     constructor(public userId: string, public shipping: any, public shoppingCart: ShoppingCart) {
+
         this.datePlaced = new Date().getTime();
 
         this.items = shoppingCart.items.map(el => {
+            delete el.$key;
             return {
               product: {
                 title: el.title,
