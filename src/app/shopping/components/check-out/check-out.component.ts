@@ -1,10 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ShoppingCartService } from '../shared/services/shopping-cart.service';
-import { Subscription, Observable } from 'rxjs';
-import { OrderService } from '../shared/services/order.service';
-import { AuthService } from '../shared/services/auth.service';
-import { Router } from '@angular/router';
+import { Observable } from 'rxjs';
 import { ShoppingCart } from 'shared/models/shopping-cart';
+import { ShoppingCartService } from 'shared/services/shopping-cart.service';
 
 @Component({
   selector: 'app-check-out',

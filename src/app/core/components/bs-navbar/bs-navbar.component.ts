@@ -1,12 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFireAuth } from 'angularfire2/auth';
 import * as firebase from 'firebase';
-import { AuthService } from '../shared/services/auth.service';
-import { ShoppingCartComponent } from '../shopping-cart/shopping-cart.component';
-import { ShoppingCartService } from '../shared/services/shopping-cart.service';
 import { Observable } from 'rxjs';
 import { AppUser } from 'shared/models/app-user';
 import { ShoppingCart } from 'shared/models/shopping-cart';
+import { AuthService } from 'shared/services/auth.service';
+import { ShoppingCartService } from 'shared/services/shopping-cart.service';
 
 @Component({
   selector: 'app-bs-navbar',
